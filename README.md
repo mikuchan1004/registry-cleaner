@@ -3,6 +3,7 @@
 [![Latest Release](https://img.shields.io/github/v/release/mikuchan1004/registry-cleaner?logo=github)](https://github.com/mikuchan1004/registry-cleaner/releases/latest)
 ![Dotnet Version](https://img.shields.io/badge/.NET-8.0-blueviolet)
 ![License](https://img.shields.io/badge/license-MIT-green)
+[![VirusTotal Check](https://img.shields.io/badge/VirusTotal-1%2F73%20Clean-success?logo=virustotal)](https://www.virustotal.com/gui/file/aa83892bef998036cff44df96a128657d15cce0543ba90228df5b982791561ee?nocache=1)
 
 **Registry Cleaner**는 시스템에 남아있는 불필요한 레지스트리 항목을 스캔하고 안전하게 제거하여 Windows 환경을 최적화하는 도구입니다.
 
