@@ -1,0 +1,100 @@
+﻿<Window x:Class="Registry_Cleaner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Registry_Cleaner"
+        Title="Registry Cleaner" Height="500" Width="900"
+        Background="#F5F5F7" Icon="/maintenance.ico">
+
+    <Window.Resources>
+        <local:CategoryToColorConverter x:Key="CategoryToColor" />
+
+        <Style TargetType="DataGridRow">
+            <Setter Property="Height" Value="32"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#EBF5FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <Border CornerRadius="8" Background="#DDD" BorderBrush="#BBB" BorderThickness="1">
+                    <Button x:Name="BtnScan" Content="🔍 스캔 시작" Width="110" Height="35" 
+                            Click="BtnScan_Click" Cursor="Hand" Background="Transparent" BorderThickness="0"/>
+                </Border>
+
+                <Separator Margin="15,5" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+
+                <TextBlock Text="필터:" VerticalAlignment="Center" FontSize="13" Foreground="#666" Margin="0,0,8,0"/>
+                <ComboBox x:Name="CbFilter" Width="130" Height="30" VerticalContentAlignment="Center"
+                          SelectedIndex="0" SelectionChanged="CbFilter_SelectionChanged">
+                    <ComboBoxItem Content="전체 리스트"/>
+                    <ComboBoxItem Content="시작 프로그램"/>
+                    <ComboBoxItem Content="소프트웨어 잔상"/>
+                    <ComboBoxItem Content="MUI 캐시"/>
+                    <ComboBoxItem Content="확장자 연결"/>
+                </ComboBox>
+            </StackPanel>
+        </DockPanel>
+
+        <ProgressBar x:Name="PbScanning" Grid.Row="1" Height="4" IsIndeterminate="True" 
+                     Visibility="Collapsed" Foreground="#0078D4" Margin="0,0,0,10"/>
+
+        <Border Grid.Row="2" CornerRadius="12" Background="White" ClipToBounds="True"
+                BorderBrush="#DDD" BorderThickness="1" SnapsToDevicePixels="True">
+            <DataGrid x:Name="DgResults" AutoGenerateColumns="False" 
+                      CanUserAddRows="False" GridLinesVisibility="None" 
+                      Background="Transparent" BorderThickness="0">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Binding="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}" Header="선택" Width="40"/>
+
+                    <DataGridTemplateColumn Header="카테고리" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="4" Padding="5,2" Margin="2" 
+                                        Background="{Binding Category, Converter={StaticResource CategoryToColor}}">
+                                    <TextBlock Text="{Binding Category}" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#333"/>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="이름" Binding="{Binding Name}" Width="150"/>
+                    <DataGridTextColumn Header="사유" Binding="{Binding Reason}" Width="*"/>
+                    <DataGridTextColumn Header="경로" Binding="{Binding Data}" Width="250" FontSize="11" Foreground="Gray"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Grid Grid.Row="3" Margin="0,15,0,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock x:Name="TbStatusMessage" Text="준비됨" Foreground="#0078D4" FontWeight="Bold" Margin="0,0,20,0"/>
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,0,10,0"/>
+                <TextBlock Text="총 항목: " Foreground="#555"/>
+                <TextBlock x:Name="TbTotalCount" Text="0" FontWeight="Bold" Margin="0,0,15,0"/>
+                <TextBlock Text="선택됨: " Foreground="#555"/>
+                <TextBlock x:Name="TbSelectedCount" Text="0" FontWeight="Bold" Foreground="#0078D4"/>
+            </StackPanel>
+
+            <Button x:Name="BtnClean" Content="✨ 선택 항목 정리" HorizontalAlignment="Right" 
+                    Width="140" Height="35" Background="#FF4B4B" Foreground="White" 
+                    FontWeight="Bold" Click="BtnClean_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
