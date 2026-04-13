@@ -1,0 +1,10 @@
+## Visual Studio 관련
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
+## 배포 관련
+Publish/
+publish/
