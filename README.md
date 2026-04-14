@@ -4,10 +4,9 @@
 ![Dotnet Version](https://img.shields.io/badge/.NET-8.0-blueviolet)
 ![License](https://img.shields.io/badge/license-MIT-green)
 [![VirusTotal Check](https://img.shields.io/badge/VirusTotal-1%2F73%20Clean-success?logo=virustotal)](https://www.virustotal.com/gui/file/aa83892bef998036cff44df96a128657d15cce0543ba90228df5b982791561ee?nocache=1)
+![AI Assisted](https://img.shields.io/badge/Developed%20with-AI%20Assistance-blueviolet?style=flat-square&logo=openai)
 
 **Registry Cleaner**는 시스템에 남아있는 불필요한 레지스트리 항목을 스캔하고 안전하게 제거하여 Windows 환경을 최적화하는 도구입니다.
-
-> 💡 본 프로그램은 Google Gemini의 도움을 받아 C#으로 제작되었습니다.
 
 ## ✨ 주요 기능
 * **잘못된 경로 정리:** 삭제된 프로그램의 잔재나 유효하지 않은 파일 경로 레지스트리를 감지합니다.
@@ -29,4 +28,4 @@
 2. 프로그램을 실행한 후 스캔을 진행하고, 정리할 항목을 확인한 뒤 삭제 버튼을 누르세요.
 
 ## ⚖️ 라이선스
-이 프로젝트는 [MIT License](./LICENSE)를 따릅니다.
+이 프로젝트는 [MIT 사용 허가서](./LICENSE)를 따릅니다.
